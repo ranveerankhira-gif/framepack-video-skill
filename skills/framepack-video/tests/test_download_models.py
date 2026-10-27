@@ -100,8 +100,11 @@ class DownloadModelsTests(unittest.TestCase):
             MODULE.safe_destination(link, "model", "file.bin")
 
     def test_mocked_windows_reparse_component_is_rejected(self):
-        target = self.root / "webui"
-        with mock.patch.object(MODULE, "is_reparse_point", side_effect=lambda path: path == target):
+        with mock.patch.object(
+            MODULE,
+            "is_reparse_point",
+            side_effect=lambda path: path.name.casefold() == "webui",
+        ):
             with self.assertRaisesRegex(RuntimeError, "Symlink or reparse point"):
                 MODULE.load_runtime()
 
