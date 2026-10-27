@@ -1,0 +1,7 @@
+interface:
+  display_name: "FramePack 本地视频生成"
+  short_description: "审查并控制本机 FramePack 模型下载与视频生成"
+  default_prompt: "使用 $framepack-video 检查我的本地 FramePack，并在任何下载或 GPU 操作前征求确认。"
+
+policy:
+  allow_implicit_invocation: false

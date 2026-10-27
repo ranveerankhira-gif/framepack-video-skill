@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-27",
+  "policy": {
+    "allowed_classifications": [
+      "self-authored",
+      "substantially-adapted"
+    ],
+    "substantial_adaptation_requires": [
+      "fixed upstream repository and revision",
+      "upstream license preserved inside the Skill directory",
+      "SOURCE.md describing concrete structural and behavioral changes",
+      "changes beyond renaming, translation, trigger edits, or safety notes"
+    ]
+  },
+  "skills": [
+    {
+      "name": "framepack-video",
+      "classification": "self-authored",
+      "license": "MIT",
+      "evidence": [
+        "Created locally to control an existing FramePack installation without bundling or installing FramePack itself.",
+        "The public copy implements explicit approval gates, pinned model revisions, verified resumable downloads, loopback-only launch, and identity-bound downloader stopping."
+      ],
+      "upstream": null
+    }
+  ],
+  "excluded": []
+}

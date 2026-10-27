@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "repository": "ranveerankhira-gif/framepack-video-skill",
+  "skills": [
+    {
+      "name": "framepack-video",
+      "display_name_zh": "FramePack 本地视频生成",
+      "purpose_zh": "审查并控制已安装的本地 FramePack 模型下载与图生视频 WebUI",
+      "release": "v0.1.0",
+      "platforms": [
+        "Windows"
+      ],
+      "risk_level": "high",
+      "permissions": {
+        "network": true,
+        "filesystem_read": true,
+        "filesystem_write": true,
+        "credentials": false,
+        "external_state": true,
+        "cost_or_quota": true
+      },
+      "dependencies": [
+        "Windows",
+        "Python 3.10+",
+        "PowerShell",
+        "用户已自行安装并审查的 FramePack",
+        "约 43 GB 可用磁盘空间（仅在用户批准模型下载时）"
+      ],
+      "invocation_policy": "explicit-only",
+      "license": "MIT",
+      "version": "0.1.0",
+      "archive_sha256": "911db6fde5e2a8d8fa01e862c50b749e1ec39d5065be7409d3711632ad43d9f7"
+    }
+  ]
+}
