@@ -1,13 +1,28 @@
 # FramePack 本地视频生成 Skill
 
-一个面向 Windows 与 Codex 的显式调用 Skill：检查用户已经安装的本地 FramePack，在逐次确认后下载固定版本模型或启动只绑定本机回环地址的 WebUI。
+**让 Codex 检查并控制你已经安装好的 FramePack，但下载约 43 GB 模型或使用 GPU 前必须单独确认。**
 
-> Safety-first local FramePack status, pinned model download, and loopback WebUI control for Codex.
+`framepack-video` 是一个面向 Windows 与 Codex 的显式调用 Skill。它可以只读检查本机安装状态、下载固定 revision 的模型，或启动只绑定回环地址的 WebUI；它不会安装 FramePack、猜测安装路径、自动打开浏览器或直接开始生成。
+
+> Control an existing local FramePack installation from Codex with status checks, pinned model downloads, and loopback-only WebUI startup under explicit approval.
 
 [![Skill](https://img.shields.io/badge/skill-1-2563eb)](#核心能力)
+[![Latest release](https://img.shields.io/github/v/release/ranveerankhira-gif/framepack-video-skill?label=release)](https://github.com/ranveerankhira-gif/framepack-video-skill/releases/latest)
+[![Validate](https://github.com/ranveerankhira-gif/framepack-video-skill/actions/workflows/validate.yml/badge.svg)](https://github.com/ranveerankhira-gif/framepack-video-skill/actions/workflows/validate.yml)
 [![Platform](https://img.shields.io/badge/platform-Windows-0078d4)](#运行要求)
 [![Explicit only](https://img.shields.io/badge/invocation-explicit--only-d97706)](#安全边界)
 [![License: MIT](https://img.shields.io/badge/license-MIT-16a34a)](LICENSE)
+
+## 先选择你要做的事
+
+| 你的目标 | 使用方式 | 是否产生高成本动作 |
+|---|---|---|
+| 检查 FramePack、Python、模型和缓存是否就绪 | `status` | 否，只读 |
+| 下载固定版本模型并验证大小与哈希 | `download -ApproveDownload` | 是，约 43 GB 网络与磁盘占用 |
+| 启动只绑定本机的 WebUI | `start -ApproveGeneration` | 是，需要 GPU、显存、电力和运行时间 |
+| 停止由本 Skill 登记且身份完全匹配的下载器 | `stop-download -ApproveStopDownload` | 会终止指定进程 |
+
+**立即使用：**前往 [最新 Release](https://github.com/ranveerankhira-gif/framepack-video-skill/releases/latest)，下载 `framepack-video-<version>.zip`，并用同一页面的 `SHA256SUMS.txt` 核对文件。
 
 ## 核心能力
 
@@ -18,7 +33,7 @@
 
 ## 安装
 
-1. 从 GitHub Releases 下载 `framepack-video-<version>.zip`，并核对同一版本的 `SHA256SUMS.txt`。
+1. 从 [GitHub Releases](https://github.com/ranveerankhira-gif/framepack-video-skill/releases/latest) 下载 `framepack-video-<version>.zip`，并核对同一版本的 `SHA256SUMS.txt`。
 2. 阅读 `SKILL.md`、`agents/openai.yaml`、脚本和安全说明。
 3. 将完整 Skill 目录复制到共享位置：
 
@@ -60,3 +75,7 @@ python -X utf8 -m unittest discover -s skills/framepack-video/tests -v
 powershell -NoProfile -ExecutionPolicy Bypass -File skills/framepack-video/tests/Test-FramePackController.ps1
 python -m compileall -q skills scripts
 ```
+
+---
+
+如果它帮你把一次大型模型下载或 GPU 启动变成可检查、可确认的操作，欢迎点一个 ⭐，让更多本地 AI 视频用户找到它。
